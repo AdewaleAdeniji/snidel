@@ -416,7 +416,7 @@
 		var owl = $('.reviews-holder');
 			owl.owlCarousel({
 				items: 3,
-				loop:true,
+				loop:( $('.owl-carousel .items').length > 3 ),
 				autoplay:true,
 				navBy: 1,
 				nav: true,

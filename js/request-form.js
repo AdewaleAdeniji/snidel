@@ -50,19 +50,19 @@ $(document).ready(function() {
         }
         var dataString = "name=" + name.val() + "&email=" + email.val() + "&phone=" + phone.val() + "&visa=" + visa.val() + "&country=" + country.val();
         $(".loading").fadeIn("slow").html("Loading...");
-        $.ajax({
-            type: "POST",
-            data: dataString,
-            url: "php/requestForm.php",
-            cache: false,
-            success: function (d) {
-                $(".form-control").removeClass("success");
-                    if(d == 'success') // Message Sent? Show the 'Thank You' message and hide the form
-                        $('.loading').fadeIn('slow').html('<font color="#00596e">Mail sent Successfully.</font>').delay(3000).fadeOut('slow');
-                         else
-                        $('.loading').fadeIn('slow').html('<font color="#ff5607">Mail not sent.</font>').delay(3000).fadeOut('slow');
-                                }
-        });
+        // $.ajax({
+        //     type: "POST",
+        //     data: dataString,
+        //     url: "php/requestForm.php",
+        //     cache: false,
+        //     success: function (d) {
+        //         $(".form-control").removeClass("success");
+        //             if(d == 'success') // Message Sent? Show the 'Thank You' message and hide the form
+        //                 $('.loading').fadeIn('slow').html('<font color="#00596e">Mail sent Successfully.</font>').delay(3000).fadeOut('slow');
+        //                  else
+        //                 $('.loading').fadeIn('slow').html('<font color="#ff5607">Mail not sent.</font>').delay(3000).fadeOut('slow');
+        //                         }
+        // });
         return false;
     });
     $("#reset").on('click', function() {

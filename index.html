@@ -399,7 +399,7 @@
                   <div class="video-link icon-lg primary-color">
                     <a
                       class="video-popup2"
-                      href="../../../../../www.youtube.com/watchbf1e.html?v=7e90gBu4pas"
+                      href="https://player.vimeo.com/video/654236659"
                     >
                       <span class="flaticon-159-play-button"></span>
                     </a>
@@ -775,7 +775,7 @@
             <!-- REQUEST FORM -->
             <div class="col-md-6 col-xl-5 offset-xl-1" id="request">
               <div id="request-form" class="text-center mb-40">
-                <form name="requestForm" class="row request-form bg-lightgrey">
+                <form name="requestForm" class="row request-form bg-lightgrey" id="form" required>
                   <!-- Request Form Text -->
                   <div class="col-md-12">
                     <h5 class="h5-lg">Request Free Consultation</h5>
@@ -785,7 +785,7 @@
                   <div id="input-name" class="col-md-12">
                     <input
                       type="text"
-                      name="name"
+                      name="from_name" id="from_name"
                       class="form-control name"
                       placeholder="Enter Your Name*"
                       required
@@ -796,7 +796,7 @@
                   <div id="input-email" class="col-md-12">
                     <input
                       type="text"
-                      name="email"
+                      name="email_address" id="email_address"
                       class="form-control email"
                       placeholder="Enter Your Email*"
                       required
@@ -807,7 +807,7 @@
                   <div id="input-phone" class="col-md-12">
                     <input
                       type="tel"
-                      name="phone"
+                      name="phone_number" id="phone_number"
                       class="form-control phone"
                       placeholder="Enter Your Phone Number*"
                       required
@@ -818,7 +818,7 @@
                   <div id="input-visa" class="col-md-12 input-visa">
                     <select
                       id="inlineFormCustomSelect1"
-                      name="visa"
+                      name="visa_type" id="visa_type"
                       class="custom-select visa"
                       required
                     >
@@ -832,15 +832,14 @@
                       <option>Others</option>
                     </select>
                   </div>
-
                   <!-- Request Form Button -->
                   <div class="col-md-12 form-btn">
-                    <button
+                    <input
                       type="submit"
                       class="btn btn-primary tra-black-hover submit"
+                      id="submit_button"
+                      value="Submit"
                     >
-                      Submit
-                    </button>
                   </div>
 
                   <!-- Request Form Message -->
@@ -930,7 +929,7 @@
                   <!-- Text -->
                   <div class="sbox-9-txt">
                     <!-- Title -->
-                    <h5 class="h5-lg darkblue-color">Singapore</h5>
+                    <h5 class="h5-lg darkblue-color">Kuwait</h5>
 
                     <!-- Text -->
 
@@ -1283,39 +1282,58 @@
       type="text/javascript"
       src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/floating-wpp.min.js"
     ></script>
-      <script>
-          $('#WAButton').floatingWhatsApp({
-              phone: '08068334162', //WhatsApp Business phone number International format-
-              //Get it with Toky at https://toky.co/en/features/whatsapp.
-              headerTitle: 'Chat with us on WhatsApp!', //Popup Title
-              popupMessage: 'Hello, how can we help you?', //Popup Message
-              showPopup: true, //Enables popup display
-              buttonImage: '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
-              //headerColor: 'crimson', //Custom header color
-              //backgroundColor: 'crimson', //Custom background button color
-              position: "right"    
-            });
-      </script>
+    <script>
+      $("#WAButton").floatingWhatsApp({
+        phone: "08068334162", //WhatsApp Business phone number International format-
+        //Get it with Toky at https://toky.co/en/features/whatsapp.
+        headerTitle: "Chat with us on WhatsApp!", //Popup Title
+        popupMessage: "Hello, how can we help you?", //Popup Message
+        showPopup: true, //Enables popup display
+        buttonImage:
+          '<img src="https://rawcdn.githack.com/rafaelbotazini/floating-whatsapp/3d18b26d5c7d430a1ab0b664f8ca6b69014aed68/whatsapp.svg" />', //Button Image
+        //headerColor: 'crimson', //Custom header color
+        //backgroundColor: 'crimson', //Custom background button color
+        position: "right",
+      });
+    </script>
     <!-- Custom Script -->
     <script src="js/custom.js"></script>
+    <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!-- [if lt IE 9]>
-			<script src="js/html5shiv.js" type="text/javascript"></script>
-			<script src="js/respond.min.js" type="text/javascript"></script>
-		<![endif] -->
+  <script type="text/javascript">
+    emailjs.init('user_WLw0JFrTumNcKgHJI8qBC')
+  </script>
+    <script>
+      function getValue(e){
+        return document.getElementById(e).value;
+      }
+      const btn = document.getElementById("submit_button");
 
-    <!-- Google Analytics: Change UA-XXXXX-X to be your site's ID. Go to http://www.google.com/analytics/ for more information. -->
-    <!--
-		<script>
-			window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-			ga('create', 'UA-XXXXX-Y', 'auto');
-			ga('send', 'pageview');
-		</script>
-		<script async src='https://www.google-analytics.com/analytics.js'></script>
-		-->
-    <!-- End Google Analytics -->
-
+      document
+        .getElementById("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          if(getValue('from_name')!==''&&getValue('email_address')!==''&&getValue('phone_number')!==''){
+          btn.value = "Submitting....";
+          btn.disabled = true;
+          const serviceID = "default_service";
+          const templateID = "admin_template";
+          emailjs.sendForm(serviceID, templateID, this).then(
+            () => {
+              btn.value = "Submit";
+              btn.disabled = false;
+              $('.loading').fadeIn('slow').html('<font color="#00596e">Consultation request submitted successfully!, We will reach out to you shortly</font>').delay(3000).fadeOut('slow')
+            },
+            (err) => {
+              btn.value = "Submit";
+              btn.disabled = false;
+              $('.loading').fadeIn('slow').html('<font color="#ff5607">Request Failed</font>').delay(3000).fadeOut('slow');
+            }
+          );
+          }
+        });
+    </script>
     <script src="js/changer.js"></script>
     <script defer src="js/styleswitch.js"></script>
   </body>

@@ -328,9 +328,9 @@
 		    type: 'iframe',		  	  
 				iframe: {
 					patterns: {
-						youtube: {			   
-							index: 'youtube.com',
-							src: 'https://www.youtube.com/embed/7e90gBu4pas'				
+						vimeo: {			   
+							index: 'vimeo.com',
+							src: 'https://player.vimeo.com/video/654236659'				
 								}
 							}
 						}		  		  
